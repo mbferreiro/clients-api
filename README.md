@@ -35,7 +35,8 @@ app/
 tests/
 |-- conftest.py
 |-- test_client_service.py
-`-- test_clients_api.py
+|-- test_clients_api.py
+`-- test_excel_reader.py
 ```
 
 ## Instalacion
@@ -132,13 +133,47 @@ Respuesta esperada:
 {
   "summary": {
     "total_records": 10,
-    "inserted": 9,
-    "errors": 1
+    "inserted": 4,
+    "errors": 6
   },
   "error_details": [
     {
-      "customer_id": 5,
-      "errors": ["Email invalido"]
+      "customer_id": 1,
+      "errors": [
+        "customer_id repetido en el archivo"
+      ]
+    },
+    {
+      "customer_id": 6,
+      "errors": [
+        "name es obligatorio"
+      ]
+    },
+    {
+      "customer_id": 7,
+      "errors": [
+        "Email invalido"
+      ]
+    },
+    {
+      "customer_id": 8,
+      "errors": [
+        "age debe ser mayor o igual a 18"
+      ]
+    },
+    {
+      "customer_id": 9,
+      "errors": [
+        "name es obligatorio",
+        "Email invalido",
+        "age debe ser mayor o igual a 18"
+      ]
+    },
+    {
+      "customer_id": 1,
+      "errors": [
+        "customer_id repetido en el archivo"
+      ]
     }
   ]
 }
@@ -178,6 +213,7 @@ Los tests cubren:
 - Duplicados por `customer_id`.
 - Flujo ABM basico por API.
 - Importacion desde un Excel generado en memoria.
+- Validacion de estructura del Excel.
 
 ## Decisiones tecnicas
 
